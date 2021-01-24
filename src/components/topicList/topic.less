@@ -1,0 +1,55 @@
+.topicList_topic {
+	// prettier-ignore
+	font-size: 16PX;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+
+	// prettier-ignore
+	margin:20PX 0;
+	// prettier-ignore
+	padding:0 10PX;
+	.topic_image {
+		// prettier-ignore
+		width: 30PX;
+		// prettier-ignore
+		min-width: 30PX;
+		// prettier-ignore
+		height: 30PX;
+		border-radius: 50%;
+	}
+	.right {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		.topic-top,
+		.topic-info {
+			display: flex;
+			align-items: baseline;
+			// prettier-ignore
+			padding: 0 10PX;
+			.topic-up {
+				background-color: #f48fb1;
+				color: #fff;
+				// prettier-ignore
+				padding:2PX 4PX;
+				text-align: center;
+				// prettier-ignore
+				border-radius: 2PX;
+				// prettier-ignore
+				min-width: 30PX;
+				// prettier-ignore
+				font-size:13PX;
+				// prettier-ignore
+				margin-right: 10PX;
+			}
+		}
+		.topic-info {
+			margin: 10px;
+			// prettier-ignore
+			font-size: 12PX;
+			color: #757575;
+			justify-content: space-between;
+		}
+	}
+}

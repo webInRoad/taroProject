@@ -4,6 +4,7 @@ import { View, Button, Text } from '@tarojs/components'
 
 import { add, minus, asyncAdd } from '../../actions/counter'
 import MenuComponent from '../../components/menu/menu'
+import TopicList from '../../components/TopicList/TopicList'
 import './index.less'
 
 @connect(
@@ -37,6 +38,7 @@ class Index extends Component {
 		return (
 			<View className="index">
 				<MenuComponent />
+				<TopicList />
 			</View>
 		)
 	}
