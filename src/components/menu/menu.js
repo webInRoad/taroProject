@@ -40,8 +40,10 @@ export default class Menu extends Component {
 		return cataData && cataData.map((item) => item.value)
 	}
 	handleItemClick = (index) => {
-		const { cataData } = this.props.menu
-		this.props.changeCata(cataData[index])
+		const { cataData, currentCata } = this.props.menu
+		if (cataData[index]['key'] !== currentCata.key) {
+			this.props.changeCata(cataData[index])
+		}
 	}
 	render() {
 		const { showDrawer, cataData } = this.props.menu
