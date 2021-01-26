@@ -1,10 +1,18 @@
 .topicinfo-replies {
 	//prettier-ignore
 	font-size: 14PX;
+	//prettier-ignore
+	margin: 20PX 0;
+	//prettier-ignore
+	PADDING: 0 10PX;
 	.topicinfo-reply {
 		display: flex;
 		width: 100%;
+		//prettier-ignore
+		margin-top:20PX;
 		.topicinfo-reply-image {
+			//prettier-ignore
+			min-width: 30PX;
 			//prettier-ignore
 			width: 30PX;
 			//prettier-ignore
@@ -13,12 +21,22 @@
 		}
 		.topicinfo-reply-right {
 			display: flex;
+			flex: 1;
+			//prettier-ignore
+			margin-left:10PX;
 			.topicinfo-reply-body {
 				display: flex;
 				flex-direction: column;
+				flex: 1;
 			}
 			.topicinfo-reply-zan {
 				display: flex;
+				.topicinfo-reply-right {
+					//prettier-ignore
+					width: 28PX;
+					//prettier-ignore
+					height: 28PX;
+				}
 			}
 		}
 	}

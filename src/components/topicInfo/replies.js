@@ -13,7 +13,7 @@ export default class Replies extends Component {
 						<View className="topicinfo-reply">
 							<Image
 								className="topicinfo-reply-image"
-								src={reply.author ? reply.author.avatar_url : ''}
+								src={require('../../assets/img/back.jpg')}
 							/>
 							<View className="topicinfo-reply-right">
 								<View className="topicinfo-reply-body">
@@ -30,18 +30,24 @@ export default class Replies extends Component {
 									</View>
 									<View className="topicinfo-reply-content">
 										{isWeapp ? (
-											<RichText nodes={reply.nodes} />
+											<RichText nodes={reply.content} />
 										) : (
 											<View
-												dangerouslySetInnerHTML={{ __html: reply.nodes }}
+												dangerouslySetInnerHTML={{ __html: reply.content }}
 											></View>
 										)}
 									</View>
 								</View>
 								<View className="topicinfo-reply-zan">
-									<Image src={require('../../assets/img/zan.png')} />
+									<Image
+										className="topicinfo-reply-right"
+										src={require('../../assets/img/zan.png')}
+									/>
 									<Text>1</Text>
-									<Image src={require('../../assets/img/zhuan.png')} />
+									<Image
+										className="topicinfo-reply-right"
+										src={require('../../assets/img/zhuan.png')}
+									/>
 								</View>
 							</View>
 						</View>
