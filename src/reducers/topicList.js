@@ -1,7 +1,9 @@
 const TOPIC_STATE = {
 	page: 1,
 	limit: 20,
-	list: []
+	list: [],
+	topicInfo: {},
+	replies: []
 }
 export default function topicList(prevState = TOPIC_STATE, action) {
 	switch (action.type) {
@@ -12,6 +14,12 @@ export default function topicList(prevState = TOPIC_STATE, action) {
 				...prevState,
 				list: prevState.list.concat(action.list),
 				page: action.page
+			}
+		case 'detailInfo':
+			return {
+				...prevState,
+				replies: action.topicInfo.replies,
+				topicInfo: { ...action.topicInfo, replies: null }
 			}
 		default:
 			return { ...prevState }

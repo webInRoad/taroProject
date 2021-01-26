@@ -29,3 +29,12 @@ export function getNextList(params) {
 		}
 	}
 }
+
+export function getTopicInfo(params) {
+	return async (dispatch) => {
+		const result = await getJson(apiObject.getTopicInfo + params.id)
+		if (result && result.data && result.data.success) {
+			dispatch({ type: 'detailInfo', topicInfo: result.data.data })
+		}
+	}
+}
