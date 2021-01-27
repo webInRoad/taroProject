@@ -3,7 +3,8 @@ const TOPIC_STATE = {
 	limit: 20,
 	list: [],
 	topicInfo: {},
-	replies: []
+	replies: [],
+	admireState: false
 }
 export default function topicList(prevState = TOPIC_STATE, action) {
 	switch (action.type) {
@@ -20,6 +21,11 @@ export default function topicList(prevState = TOPIC_STATE, action) {
 				...prevState,
 				replies: action.topicInfo.replies,
 				topicInfo: { ...action.topicInfo, replies: null }
+			}
+		case 'admireSuccess':
+			return {
+				...prevState,
+				admireState: !prevState.admireState
 			}
 		default:
 			return { ...prevState }

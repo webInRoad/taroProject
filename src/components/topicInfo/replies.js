@@ -40,12 +40,17 @@ export default class Replies extends Component {
 								</View>
 								<View className="topicinfo-reply-zan">
 									<Image
-										className="topicinfo-reply-right"
-										src={require('../../assets/img/zan.png')}
+										onClick={() => this.props.admire(reply)}
+										className="topicinfo-reply-image"
+										src={
+											reply.is_uped
+												? require('../../assets/img/myzan.png')
+												: require('../../assets/img/zan.png')
+										}
 									/>
-									<Text>1</Text>
+									<Text>{reply.ups.length}</Text>
 									<Image
-										className="topicinfo-reply-right"
+										className="topicinfo-reply-image"
 										src={require('../../assets/img/zhuan.png')}
 									/>
 								</View>
