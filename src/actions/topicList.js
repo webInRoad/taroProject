@@ -63,3 +63,18 @@ export async function admireTopic(params) {
 		Taro.showToast({ title: '点赞失败！', icon: 'none' })
 	}
 }
+
+export function replyContent(params) {
+	return async (dispatch) => {
+		const data = { ...params, topicId: undefined }
+		const result = await postJson(
+			apiObject.replyTopic + params.topicId + '/replies',
+			data
+		)
+		if (result && result.data && result.data.success) {
+			dispatch({ type: 'replyContent' })
+		} else {
+			Taro.showToast({ title: '评论失败', icon: 'none' })
+		}
+	}
+}

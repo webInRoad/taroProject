@@ -4,7 +4,8 @@ const TOPIC_STATE = {
 	list: [],
 	topicInfo: {},
 	replies: [],
-	admireState: false
+	admireState: false,
+	addReply: false
 }
 export default function topicList(prevState = TOPIC_STATE, action) {
 	switch (action.type) {
@@ -26,6 +27,11 @@ export default function topicList(prevState = TOPIC_STATE, action) {
 			return {
 				...prevState,
 				admireState: !prevState.admireState
+			}
+		case 'replyContent':
+			return {
+				...prevState,
+				addReply: !prevState.addReply
 			}
 		default:
 			return { ...prevState }
