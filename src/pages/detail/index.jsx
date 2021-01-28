@@ -39,7 +39,8 @@ export default class Detail extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			showReplyContent: false
+			showReplyContent: false,
+			currentReply: null
 		}
 	}
 	componentDidMount() {
@@ -83,10 +84,16 @@ export default class Detail extends Component {
 	handleOk = (replyContent) => {
 		const { user } = this.props
 		const { topicId } = getCurrentInstance().router.params
+		const { currentReply } = this.state
+		const reply_id = currentReply ? currentReply.id : ''
+		const preContent = currentReply
+			? '@' + currentReply.author.loginname + '  '
+			: ''
 		const params = {
 			accesstoken: user.access_token,
-			content: replyContent.content,
-			topicId
+			content: preContent + replyContent.content,
+			topicId,
+			reply_id
 		}
 		this.props.replyContent(params)
 	}
@@ -94,6 +101,12 @@ export default class Detail extends Component {
 		this.setState({
 			showReplyContent: false
 		})
+	}
+	replyToReply = (currentReply) => {
+		this.setState({
+			currentReply
+		})
+		this.reply()
 	}
 	render() {
 		const { topicInfo, replies } = this.props
@@ -107,7 +120,11 @@ export default class Detail extends Component {
 					/>
 				) : null}
 				<TopicInfo topicInfo={topicInfo} />
-				<Replies replies={replies} admire={this.admire} />
+				<Replies
+					replies={replies}
+					admire={this.admire}
+					replyToReply={this.replyToReply}
+				/>
 				<Button className="replyBtn" onClick={this.reply}>
 					回复
 				</Button>

@@ -50,6 +50,7 @@ export default class Replies extends Component {
 									/>
 									<Text>{reply.ups.length}</Text>
 									<Image
+										onClick={() => this.props.replyToReply(reply)}
 										className="topicinfo-reply-image"
 										src={require('../../assets/img/zhuan.png')}
 									/>
