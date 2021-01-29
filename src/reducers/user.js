@@ -1,9 +1,22 @@
 const USER_STATE = {
-	access_token: 'b2d71875-844c-45ce-b639-de872e09c1e5'
+	access_token: null,
+	loginname: ''
 }
 
 export default function user(prevState = USER_STATE, action) {
 	switch (action.type) {
+		case 'loginSuccess':
+			return {
+				...prevState,
+				accesss_token: action.accesstoken,
+				loginname: action.loginname
+			}
+		case 'loginFail':
+			return {
+				...prevState,
+				accesss_token: action.accesstoken,
+				loginname: action.loginname
+			}
 		default:
 			return { ...prevState }
 	}

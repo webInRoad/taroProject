@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Taro from '@tarojs/taro'
 import { View, Button, Text, Image } from '@tarojs/components'
 import { showDrawer, hideDrawer, changeCata } from '../../actions/menu'
 import { AtDrawer } from 'taro-ui'
@@ -45,6 +46,9 @@ export default class Menu extends Component {
 			this.props.changeCata(cataData[index])
 		}
 	}
+	jumpToLogin = () => {
+		Taro.navigateTo({ url: '/pages/login/index' })
+	}
 	render() {
 		const { showDrawer, cataData } = this.props.menu
 		const menus = this.getMenus(cataData)
@@ -63,7 +67,11 @@ export default class Menu extends Component {
 				<Text>
 					{this.props.menu.currentCata && this.props.menu.currentCata.value}
 				</Text>
-				<Image className="image" src={require('../../assets/img/login.png')} />
+				<Image
+					onClick={this.jumpToLogin}
+					className="image"
+					src={require('../../assets/img/login.png')}
+				/>
 			</View>
 		)
 	}
