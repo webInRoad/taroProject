@@ -1,6 +1,7 @@
 const USER_STATE = {
 	access_token: null,
-	loginname: ''
+	loginname: '',
+	avatar_url: ''
 }
 
 export default function user(prevState = USER_STATE, action) {
@@ -8,14 +9,12 @@ export default function user(prevState = USER_STATE, action) {
 		case 'loginSuccess':
 			return {
 				...prevState,
-				accesss_token: action.accesstoken,
-				loginname: action.loginname
+				...action
 			}
 		case 'loginFail':
 			return {
 				...prevState,
-				accesss_token: action.accesstoken,
-				loginname: action.loginname
+				...action
 			}
 		default:
 			return { ...prevState }

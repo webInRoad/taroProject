@@ -3,6 +3,7 @@ import { View, Image, Text } from '@tarojs/components'
 import './index.less'
 export default class LoginHeader extends Component {
 	render() {
+		const { loginname, avatar_url } = this.props
 		return (
 			<View className="login-header">
 				<Image
@@ -11,8 +12,11 @@ export default class LoginHeader extends Component {
 				/>
 				<Image
 					className="login-header-image"
-					src={require('../../assets/img/head.png')}
+					src={avatar_url ? avatar_url : require('../../assets/img/head.png')}
 				/>
+				{loginname ? (
+					<View className="header-loginname">{loginname}</View>
+				) : null}
 			</View>
 		)
 	}
