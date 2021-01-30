@@ -36,8 +36,8 @@ export default class User extends Component {
 		return (
 			<View>
 				<Header loginname={loginname} avatar_url={avatar_url} />
-				<Panel data={recentTopics || []} />
-				<Panel data={recentReplies || []} />
+				<Panel data={recentTopics || []} title="最近创建的话题" />
+				<Panel data={recentReplies || []} title="最近参与的话题" />
 			</View>
 		)
 	}
