@@ -5,7 +5,7 @@ import { View, Text, Input, Button } from '@tarojs/components'
 import { getUserInfo } from '../../actions/user'
 import Header from '../../components/LoginHeader'
 import Panel from '../../components/Panel'
-
+import './index.less'
 @connect((store) => {
 	return {
 		...store.user
@@ -29,6 +29,11 @@ export default class User extends Component {
 			user
 		})
 	}
+
+	jumpPublishPage = () => {
+		// Taro.navigateTo({ url: '/pages/publish/index' })
+		Taro.redirectTo({ url: '/pages/publish/index' })
+	}
 	render() {
 		const { loginname, avatar_url } = this.props
 		const { user } = this.state
@@ -38,6 +43,9 @@ export default class User extends Component {
 				<Header loginname={loginname} avatar_url={avatar_url} />
 				<Panel data={recentTopics || []} title="最近创建的话题" />
 				<Panel data={recentReplies || []} title="最近参与的话题" />
+				<Button onClick={this.jumpPublishPage} className="publish-btn">
+					发布话题
+				</Button>
 			</View>
 		)
 	}

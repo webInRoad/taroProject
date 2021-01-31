@@ -33,3 +33,13 @@ export async function getUserInfo(loginname) {
 		Taro.showToast({ title: '获取用户信息失败', icon: 'none' })
 	}
 }
+// export function validUser(params) { // 返回的只是个数据，不是个promise，用async弄下就是个promise
+export async function validUser(params) {
+	// async 函数返回一个 Promise 对象
+	if (params && params.access_token) {
+		return true
+	} else {
+		Taro.navigateTo({ url: '/pages/login/index' })
+	}
+	return false
+}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Taro from '@tarojs/taro'
 import { View, Button, Text, Image } from '@tarojs/components'
 import { showDrawer, hideDrawer, changeCata } from '../../actions/menu'
+import { validUser } from '../../actions/user'
 import { AtDrawer } from 'taro-ui'
 import cata from '../../assets/img/cata.png'
 import './menu.less'
@@ -21,7 +22,7 @@ import './menu.less'
 // 	}
 // )
 @connect(
-	({ menu }) => ({ menu }),
+	({ menu, user }) => ({ menu, user }),
 	(dispacth) => {
 		return {
 			showMenu() {
@@ -47,7 +48,12 @@ export default class Menu extends Component {
 		}
 	}
 	jumpToLogin = () => {
-		Taro.navigateTo({ url: '/pages/login/index' })
+		const { user } = this.props
+		validUser(user).then((result) => {
+			if (result) {
+				Taro.navigateTo({ url: '/pages/user/index' })
+			}
+		})
 	}
 	render() {
 		const { showDrawer, cataData } = this.props.menu

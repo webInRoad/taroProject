@@ -7,6 +7,7 @@ import {
 	admireTopic,
 	replyContent
 } from '../../actions/topicList'
+import { validUser } from '../../actions/user'
 import TopicInfo from '../../components/topicInfo/topicInfo'
 import Replies from '../../components/topicInfo/replies'
 import ReplyContent from '../../components/topicInfo/replyContent'
@@ -68,17 +69,27 @@ export default class Detail extends Component {
 	}
 	admire = (reply) => {
 		const { user } = this.props
-		const param = {
-			replyId: reply.id,
-			accesstoken: user.access_token
-		}
-		admireTopic(param).then(() => {
-			this.getDetail()
+		validUser(user).then((result) => {
+			if (result) {
+				const { user } = this.props
+				const param = {
+					replyId: reply.id,
+					accesstoken: user.access_token
+				}
+				admireTopic(param).then(() => {
+					this.getDetail()
+				})
+			}
 		})
 	}
 	reply = () => {
-		this.setState({
-			showReplyContent: true
+		const { user } = this.props
+		validUser(user).then((result) => {
+			if (result) {
+				this.setState({
+					showReplyContent: true
+				})
+			}
 		})
 	}
 	handleOk = (replyContent) => {
@@ -103,10 +114,15 @@ export default class Detail extends Component {
 		})
 	}
 	replyToReply = (currentReply) => {
-		this.setState({
-			currentReply
+		const { user } = this.props
+		validUser(user).then((result) => {
+			if (result) {
+				this.setState({
+					currentReply
+				})
+				this.reply()
+			}
 		})
-		this.reply()
 	}
 	render() {
 		const { topicInfo, replies } = this.props
