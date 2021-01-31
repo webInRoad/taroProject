@@ -125,8 +125,12 @@ export default class Detail extends Component {
 		})
 	}
 	render() {
-		const { topicInfo, replies } = this.props
+		const { topicInfo, replies, user } = this.props
 		const { showReplyContent } = this.state
+		let isSelfTopic = false
+		if (topicInfo && topicInfo.author) {
+			isSelfTopic = user.loginname == topicInfo.author.loginname
+		}
 		return (
 			<View className="detail">
 				{showReplyContent ? (
@@ -135,7 +139,7 @@ export default class Detail extends Component {
 						handleCancel={this.handleCancel}
 					/>
 				) : null}
-				<TopicInfo topicInfo={topicInfo} />
+				<TopicInfo topicInfo={topicInfo} isSelfTopic={isSelfTopic} />
 				<Replies
 					replies={replies}
 					admire={this.admire}

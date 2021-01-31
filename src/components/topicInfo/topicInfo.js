@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, RichText } from '@tarojs/components'
+import { View, Text, RichText, Image } from '@tarojs/components'
 import { myTimeToLocal } from '../../util/date.js'
 import './topicInfo.less'
 export default class TopicInfo extends Component {
 	render() {
-		const { topicInfo } = this.props
+		const { topicInfo, isSelfTopic } = this.props
 		return (
 			<View className="topic-info">
 				<View className="topic-info-header">
@@ -23,6 +23,18 @@ export default class TopicInfo extends Component {
 						<Text>{topicInfo.author ? topicInfo.author.loginname : ''}</Text>
 						<Text>{topicInfo.visit_count + '次浏览'}</Text>
 					</View>
+					{isSelfTopic ? (
+						<View className="topic-info-btn">
+							<Image
+								className="img"
+								src={require('../../assets/img/del.png')}
+							/>
+							<Image
+								className="img"
+								src={require('../../assets/img/edit.png')}
+							/>
+						</View>
+					) : null}
 				</View>
 				<View className="topic-info-body">
 					<RichText nodes={topicInfo.content} />
