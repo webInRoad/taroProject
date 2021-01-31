@@ -75,19 +75,19 @@ export default class Publish extends Component {
 	}
 	render() {
 		const { cataData } = this.props
-		const { selectCata, title, content } = this.state
+		const { selectCata, title, content, isEdit } = this.state
 		return (
 			<View className="topic-publish-wrapper">
 				<Input
 					className="topic-publish-title"
 					placeholder="请输入标题"
-					value={title}
+					value={isEdit ? title : ''}
 					onInput={this.onTitleChange}
 				></Input>
 				<Textarea
 					className="topic-publish-content"
 					placeholder="请输入内容"
-					value={content}
+					value={isEdit ? content : ''}
 					onInput={this.onContentChange}
 				/>
 				<Picker
