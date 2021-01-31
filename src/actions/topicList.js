@@ -87,3 +87,12 @@ export async function publishTopic(params) {
 		Taro.showToast({ title: '发布失败', icon: 'none' })
 	}
 }
+
+export async function editTopic(params) {
+	const result = await postJson(apiObject.updateTopic, params)
+	if (result && result.data && result.data.success) {
+		return result.data
+	} else {
+		Taro.showToast({ title: '更新失败', icon: 'none' })
+	}
+}

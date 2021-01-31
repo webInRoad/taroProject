@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCurrentInstance } from '@tarojs/taro'
+import Taro, { getCurrentInstance } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import {
 	getTopicInfo,
@@ -124,6 +124,9 @@ export default class Detail extends Component {
 			}
 		})
 	}
+	editTopic = () => {
+		Taro.navigateTo({ url: '/pages/publish/index?isEdit=1' })
+	}
 	render() {
 		const { topicInfo, replies, user } = this.props
 		const { showReplyContent } = this.state
@@ -139,7 +142,11 @@ export default class Detail extends Component {
 						handleCancel={this.handleCancel}
 					/>
 				) : null}
-				<TopicInfo topicInfo={topicInfo} isSelfTopic={isSelfTopic} />
+				<TopicInfo
+					topicInfo={topicInfo}
+					isSelfTopic={isSelfTopic}
+					editTopic={this.editTopic}
+				/>
 				<Replies
 					replies={replies}
 					admire={this.admire}

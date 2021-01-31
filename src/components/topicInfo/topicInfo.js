@@ -30,6 +30,7 @@ export default class TopicInfo extends Component {
 								src={require('../../assets/img/del.png')}
 							/>
 							<Image
+								onClick={this.props.editTopic}
 								className="img"
 								src={require('../../assets/img/edit.png')}
 							/>

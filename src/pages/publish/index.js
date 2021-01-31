@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Taro from '@tarojs/taro'
+import Taro, { getCurrentInstance } from '@tarojs/taro'
 import { View, Text, Picker, Input, Textarea, Button } from '@tarojs/components'
-import { publishTopic } from '../../actions/topicList'
+import { publishTopic, editTopic } from '../../actions/topicList'
 import './index.less'
 @connect((store) => {
-	return { ...store.menu, ...store.user }
+	return { ...store.menu, ...store.user, ...store.topicList }
 })
 export default class Publish extends Component {
 	constructor(props) {
@@ -15,6 +15,24 @@ export default class Publish extends Component {
 			title: '',
 			content: ''
 		}
+	}
+	componentDidMount() {
+		const { isEdit } = getCurrentInstance().router.params
+		this.setState(
+			{
+				isEdit
+			},
+			() => {
+				const { topicInfo } = this.props
+				console.info(topicInfo, 'topicInfo')
+				const { title, content } = topicInfo
+				this.setState({
+					topicInfo,
+					title,
+					content
+				})
+			}
+		)
 	}
 	onChange = (event) => {
 		console.info('value:' + event.detail.value)
@@ -33,34 +51,43 @@ export default class Publish extends Component {
 		this.setState({ content })
 	}
 	handleSubmit = () => {
-		const { title, content, selectCata } = this.state
-		const { access_token } = this.props
+		const { title, content, selectCata, isEdit } = this.state
+		const { access_token, topicInfo } = this.props
 		const params = {
 			title,
 			content,
 			accesstoken: access_token,
 			tab: 'dev'
 		}
-		publishTopic(params).then(() => {
-			console.info('成功')
-			// Taro.navigateBack() //返回之后页面不会重新调用接口
-			// Taro.navigateTo({ url: '/pages/user/index' }) //此时返回会到本页面
-			Taro.redirectTo({ url: '/pages/user/index' })
-		})
+		if (isEdit) {
+			params['topic_id'] = topicInfo.id
+			editTopic(params).then(() => {
+				Taro.redirectTo({ url: '/pages/user/index' })
+			})
+		} else {
+			publishTopic(params).then(() => {
+				console.info('成功')
+				// Taro.navigateBack() //返回之后页面不会重新调用接口
+				// Taro.navigateTo({ url: '/pages/user/index' }) //返回之后页面不会重新调用接口，此时返回会到本页面
+				Taro.redirectTo({ url: '/pages/user/index' })
+			})
+		}
 	}
 	render() {
 		const { cataData } = this.props
-		const { selectCata } = this.state
+		const { selectCata, title, content } = this.state
 		return (
 			<View className="topic-publish-wrapper">
 				<Input
 					className="topic-publish-title"
 					placeholder="请输入标题"
+					value={title}
 					onInput={this.onTitleChange}
 				></Input>
 				<Textarea
 					className="topic-publish-content"
 					placeholder="请输入内容"
+					value={content}
 					onInput={this.onContentChange}
 				/>
 				<Picker
