@@ -20,7 +20,7 @@ export default class Topic extends Component {
 						{item.top ? (
 							<Text className="topic-up">置顶</Text>
 						) : item.tab == 'ask' ? (
-							<Text className="topic-up blue">问答2</Text>
+							<Text className="topic-up blue">问答</Text>
 						) : (
 							<Text className="topic-up blue">分享</Text>
 						)}
