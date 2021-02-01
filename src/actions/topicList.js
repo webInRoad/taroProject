@@ -1,4 +1,3 @@
-import { showActionSheet } from '@tarojs/taro'
 import apiObject from '../constants/api'
 import { getJson, postJson } from '../util/request'
 import Taro from '@tarojs/taro'
@@ -66,7 +65,7 @@ export async function admireTopic(params) {
 
 export function replyContent(params) {
 	return async (dispatch) => {
-		const data = { ...params, topicId: undefined }
+		const data = { ...params, topicId: undefined } //topicId是放在path上,data里要剔除
 		const result = await postJson(
 			apiObject.replyTopic + params.topicId + '/replies',
 			data

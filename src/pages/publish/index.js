@@ -23,14 +23,15 @@ export default class Publish extends Component {
 				isEdit
 			},
 			() => {
-				const { topicInfo } = this.props
-				console.info(topicInfo, 'topicInfo')
-				const { title, content } = topicInfo
-				this.setState({
-					topicInfo,
-					title,
-					content
-				})
+				if (isEdit) {
+					const { topicInfo } = this.props
+					const { title, content } = topicInfo
+					this.setState({
+						topicInfo,
+						title,
+						content
+					})
+				}
 			}
 		)
 	}
@@ -74,20 +75,20 @@ export default class Publish extends Component {
 		}
 	}
 	render() {
-		const { cataData } = this.props
+		const { cataData, topicInfo } = this.props
 		const { selectCata, title, content, isEdit } = this.state
 		return (
 			<View className="topic-publish-wrapper">
 				<Input
 					className="topic-publish-title"
 					placeholder="请输入标题"
-					value={isEdit ? title : ''}
+					value={title}
 					onInput={this.onTitleChange}
 				></Input>
 				<Textarea
 					className="topic-publish-content"
 					placeholder="请输入内容"
-					value={isEdit ? content : ''}
+					value={content}
 					onInput={this.onContentChange}
 				/>
 				<Picker
@@ -96,8 +97,9 @@ export default class Publish extends Component {
 					onChange={this.onChange}
 					rangeKey="value"
 				>
-					<View className="topic-publish-selector"></View>
-					{selectCata ? selectCata.value : '请选择'}
+					<View className="topic-publish-selector">
+						{selectCata ? selectCata.value : '请选择'}
+					</View>
 				</Picker>
 				<Button className="topic-publish-btn" onClick={this.handleSubmit}>
 					确定
