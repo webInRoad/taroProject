@@ -4,6 +4,7 @@ import './index.less'
 export default class LoginHeader extends Component {
 	render() {
 		const { loginname, avatar_url } = this.props
+		console.info(avatar_url, 'avatar_url')
 		return (
 			<View className="login-header">
 				<Image
