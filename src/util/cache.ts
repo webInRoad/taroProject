@@ -1,10 +1,11 @@
 import Taro from '@tarojs/taro'
-
-export function setCache(key, value) {
+import { ICache } from './../interfaces/ICache.d';
+export function setCache(key, value:ICache):void{
+  var params:any = value
 	if (typeof value == 'object') {
-		value = JSON.stringify(value)
+		params = JSON.stringify(value)
 	}
-	Taro.setStorageSync(key, value)
+	Taro.setStorageSync(key, params)
 }
 
 export function getCache(key) {

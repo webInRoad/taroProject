@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { View, Image, Text } from '@tarojs/components'
+import { IHeadProps } from '../../interfaces/IHeader'
 import './index.less'
-export default class LoginHeader extends Component {
+export default class LoginHeader extends Component<IHeadProps> {
 	render() {
 		const { loginname, avatar_url } = this.props
 		console.info(avatar_url, 'avatar_url')

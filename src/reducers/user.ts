@@ -18,7 +18,8 @@ export default function user(prevState = USER_STATE, action) {
 				...prevState,
 				...action
 			}
-			setCache(USERCACHEKEY, newState)
+      let str = setCache(USERCACHEKEY, newState) //居然不会报错,按道理不应该有返回值的
+      console.info(str)
 			return newState
 		case 'loginFail':
 			const newFailState = {
