@@ -1,4 +1,5 @@
 export interface IHeadProps {
   loginname:string,
-  avatar_url:string
+  avatar_url:string,
+  [propName:string]:any
 }

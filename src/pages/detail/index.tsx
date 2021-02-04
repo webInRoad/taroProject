@@ -11,6 +11,7 @@ import { validUser } from '../../actions/user'
 import TopicInfo from '../../components/topicInfo/topicInfo'
 import Replies from '../../components/topicInfo/replies'
 import ReplyContent from '../../components/topicInfo/replyContent'
+import { IDetailProps, IDetailState } from '../../interfaces/IDetail'
 import './index.less'
 @connect(
 	(store) => {
@@ -36,7 +37,7 @@ import './index.less'
 		}
 	}
 )
-export default class Detail extends Component {
+export default class Detail extends Component<IDetailProps, IDetailState> {
 	constructor(props) {
 		super(props)
 		this.state = {
